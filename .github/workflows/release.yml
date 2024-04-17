@@ -2,6 +2,11 @@ name: Build and Release
 
 on:
   workflow_dispatch:
+    inputs:
+      refToBuild:
+        description: '1c8375997d627d6ae40df4f4c242293d01659974'
+        required: true
+        type: string
   release:
     types: [published]
   push:
@@ -157,6 +162,8 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.refToBuild }}
 
       - name: Show workflow information 
         run: |
